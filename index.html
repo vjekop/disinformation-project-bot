@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disinformation Bot | Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        :root {
+            --bg: #000000;
+            --text: #ffffff;
+            --accent: #0070f3;
+            /* High-contrast blue */
+            --subtle: #444444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Heading - Simple and Direct */
+        .top-banner {
+            width: 100%;
+            padding: 40px 60px;
+            border-bottom: 1px solid #222;
+            opacity: 0;
+        }
+
+        .top-banner h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* Main Hero Section */
+        .hero {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 60px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .description {
+            max-width: 500px;
+            font-size: 1.25rem;
+            color: #888;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .cta {
+            opacity: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--text);
+            color: var(--bg);
+            padding: 20px 45px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Footer Info for Presentation */
+        .presentation-footer {
+            padding: 40px 60px;
+            display: flex;
+            gap: 40px;
+            color: var(--subtle);
+            font-size: 0.8rem;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top-banner" id="banner">
+        <h2>Disinformation Bot: Social Engineering and Phishing</h2>
+    </header>
+
+    <main class="hero">
+        <h1 id="title">Generation of <br> Social Engineering Scenarios.</h1>
+        <p class="description" id="desc">
+            An AI-driven simulation designed to showcase threat vectors in modern communication and digital security.
+        </p>
+        <div class="cta" id="cta">
+            <a href="simulator.html" class="btn">Start Simulation</a>
+            <a href="exercises.html" class="btn" style="background:var(--subtle);color:var(--text);border:1px solid #555;margin-left:15px;">Practice Exercises</a>
+            <a href="techstack.html" class="btn" style="background:#111;color:var(--text);border:1px solid #333;margin-left:15px;">Tools & Defenses</a>
+        </div>
+    </main>
+
+    <footer class="presentation-footer" id="footer">
+        <span>SCHOOL PROJECT // 2026</span>
+        <span>ACADEMIC ANALYSIS TOOL</span>
+    </footer>
+
+    <script>
+        // Clean, cinematic reveal
+        const tl = gsap.timeline();
+        tl.to("#banner", { opacity: 1, duration: 1 })
+            .to("#title", { opacity: 1, y: 0, duration: 1.2, ease: "expo.out" }, "-=0.5")
+            .to("#desc", { opacity: 1, y: 0, duration: 1 }, "-=0.8")
+            .to("#cta", { opacity: 1, duration: 1 }, "-=0.8")
+            .to("#footer", { opacity: 1, duration: 1 }, "-=1");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Stack & Defenses | Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --text: #ffffff;
+            --accent: #0070f3;
+            /* High-contrast blue */
+            --subtle: #444444;
+            --border: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Heading - Simple and Direct */
+        .top-banner {
+            width: 100%;
+            padding: 30px 60px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-banner h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--text);
+            color: var(--bg);
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Main Section */
+        main {
+            flex-grow: 1;
+            padding: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            max-width: 600px;
+            font-size: 1.25rem;
+            color: #888;
+            margin-bottom: 4rem;
+            line-height: 1.6;
+        }
+
+        /* Brutalist Category Sections */
+        .category {
+            margin-bottom: 6rem;
+        }
+
+        .category-header {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .sub-category {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            border: 1px solid var(--border);
+            padding: 30px;
+            background: #000;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent);
+            background: #0a0a0a;
+        }
+
+        .tool-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .tool-card p {
+            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .tool-card strong {
+            color: #fff;
+        }
+
+        /* Footer Info for Presentation */
+        .presentation-footer {
+            padding: 40px 60px;
+            display: flex;
+            gap: 40px;
+            color: var(--subtle);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top-banner">
+        <h2>Disinformation Bot: Threat Landscape</h2>
+        <a href="index.html" class="btn">Return to Simulation</a>
+    </header>
+
+    <main>
+        <h1>Architecting <br> The Attack Vector.</h1>
+        <p class="description">
+            A brutal breakdown of the actual offensive stacks utilized by malicious actors, the enterprise arrays engineered by ethical hackers to thwart them, and the civilian utilities built to easily prevent intrusion.
+        </p>
+
+        <!-- Red Team / Attackers -->
+        <div class="category">
+            <h2 class="category-header">01 // The Attacker's Stack</h2>
+            
+            <h3 class="sub-category">Open Source Intelligence (OSINT)</h3>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Maltego & Shodan</h3>
+                    <p><strong>Maltego</strong> maps relationships by scraping LinkedIn and public databases to build psychological profiles of targets. <strong>Shodan</strong> acts as a search engine for hackers to locate vulnerable exposed servers.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Recon-ng & theHarvester</h3>
+                    <p>Command-line frameworks used to scrape corporate emails, subdomains, and host data from public search engines before launching a targeted attack.</p>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Phishing & Credential Theft</h3>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Gophish & King Phisher</h3>
+                    <p>Open-source toolkits used to template, automate, schedule, and mass-send hyper-realistic spoofed corporate emails while tracking open rates down to the individual target.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Evilginx2 & Modlishka</h3>
+                    <p>Advanced man-in-the-middle reverse proxies. When a victim logs into a fake site, these tools seamlessly pass the login to the real site and steal the live session cookie, bypassing 2FA completely.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Social-Engineer Toolkit (SET)</h3>
+                    <p>A heavily utilized open-source penetration testing framework built purely for human-side attacks: automating SMS spoofing, spear-phishing, and malicious QR codes.</p>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Payload Delivery & Spoofing</h3>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Physical Access (Rubber Ducky & O.MG Cable)</h3>
+                    <p>Hardware penetration tools. The <strong>Rubber Ducky</strong> looks like a USB drive and the <strong>O.MG Cable</strong> looks like an Apple charger, but both act as hidden keyboards that type malicious commands at 1,000 WPM the second they are plugged in.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Deepfakes (ElevenLabs / AI Clones)</h3>
+                    <p>Neural networks leveraged to clone the exact acoustic parameters of a CEO or loved one using just 3 seconds of recorded audio pulled directly from Instagram.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Caller ID Spoofing (SpoofCard)</h3>
+                    <p>Services abused by attackers to mask their true phone number, guaranteeing the caller ID on the target's phone displays "IT Support" or "Bank Fraud Dept".</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blue Team / Defenders -->
+        <div class="category">
+            <h2 class="category-header">02 // The Defender's Stack</h2>
+            
+            <h3 class="sub-category">Visibility & Event Correlation</h3>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Splunk & Elastic (SIEM)</h3>
+                    <p>Massive log aggregators. If an employee clicks a phishing link in New York and suddenly logs in from a suspicious Russian VPN node seconds later, the SIEM correlates the events and fires a critical alert.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Threat Intel (AlienVault OTX / VirusTotal)</h3>
+                    <p>Global decentralized databases where security professionals instantly share the IP addresses, domains, and malware hashes of live active threat actors.</p>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Endpoint & Network Hardening</h3>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>EDR (CrowdStrike / SentinelOne)</h3>
+                    <p>Advanced endpoint detection installed on corporate laptops. Instead of matching old virus signatures, EDR uses behavioral AI. If a Word Document secretly attempts to dump credentials, the EDR kills the process at the kernel layer.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Email Gateways (Proofpoint / Mimecast)</h3>
+                    <p>The first line of defense. They scan every incoming email globally, detonating attachments in isolated virtual machines (sandboxes) to hunt for zero-day malware before the employee ever sees the email.</p>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Identity & Training</h3>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Zero Trust Identity (Okta / Duo)</h3>
+                    <p>A rigorous architecture where nobody is trusted by default. Access to every critical company app enforces strict, continuous Multi-Factor Authentication.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Simulation & Education (KnowBe4)</h3>
+                    <p>The ultimate defender tool. Enables Security Operating Centers to legally send highly realistic fake phishing emails to their own staff, tracking click-rates to determine who needs mandatory training.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Civilian Protection -->
+        <div class="category">
+            <h2 class="category-header">03 // Everyday Armor (Civilian Use)</h2>
+            
+            <h3 class="sub-category">Hardened Access</h3>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Physical Keys (YubiKey / Google Titan)</h3>
+                    <p>The absolute gold standard. Even if a target hands over their username and password to a perfect clone of their bank website, the attacker fails because they don't have the physical hardware key.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Authenticator Apps (Authy / Aegis)</h3>
+                    <p>Time-based One-Time Passwords (TOTP) that live only on your device and rotate every 30 seconds. This stops attackers who intercept text messages using SIM-swapping attacks.</p>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Detection Utilities</h3>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <h3>Password Managers (Bitwarden / 1Password)</h3>
+                    <p>Aside from storing credentials securely, these tools are built-in phishing detectors: they strictly refuse to autofill a password if the domain URL is even one character off from the legitimate site.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Data Breach Auditors (HaveIBeenPwned)</h3>
+                    <p>A free public database allowing regular users to instantly check whether their email address or phone number was caught within a highly compromised dark-web data leak.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>Link Analyzers (URLScan.io / Phish.Report)</h3>
+                    <p>Public sandboxes where a user can safely paste a suspicious URL and receive an automated screenshot and behavior analysis of the site without actually visiting it.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>The Human Firewall</h3>
+                    <p>The ultimate defense: The "Hang Up & Call Back" rule. If a panicked caller demands money or access, hang up the phone, locate the company's official public listing, and call the number back yourself.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="presentation-footer">
+        <span>SCHOOL PROJECT // 2026</span>
+        <span>ACADEMIC ANALYSIS TOOL</span>
+    </footer>
+
+</body>
+</html>

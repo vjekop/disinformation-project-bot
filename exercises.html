@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Exercises | Disinformation Bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-panel: #111111;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --accent: #0070f3;
+            --accent-hover: #005bb5;
+            --border: #222222;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: var(--bg-dark);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-title {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .exit {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.75rem;
+            padding: 8px 16px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .exit:hover {
+            background: var(--text-main);
+            color: var(--bg-dark);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p.desc {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin: 0;
+            color: var(--accent);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-title">Simone // AI Training Module</div>
+        <a href="index.html" class="exit">Back to Home</a>
+    </header>
+
+    <div class="container">
+        <h1>Practice Exercises</h1>
+        <p class="desc">Put your knowledge to the test. Select a scenario below and Simone will actively roleplay as an attacker. Let's see if you can spot the red flags.</p>
+
+        <div class="grid">
+            <a href="simulator.html?type=phishing" class="card">
+                <h3>Phishing Email Analysis</h3>
+                <p>Simone will send you a highly realistic but fake corporate email. Your job is to reply identifying the subtle red flags that reveal it's a scam.</p>
+                <div class="card-footer">Launch Exercise &rarr;</div>
+            </a>
+            
+            <a href="simulator.html?type=smishing" class="card">
+                <h3>The Urgent Boss Text</h3>
+                <p>You receive an urgent text message from someone claiming to be your CEO asking for gift cards or access codes. How will you respond?</p>
+                <div class="card-footer">Launch Exercise &rarr;</div>
+            </a>
+
+            <a href="simulator.html?type=tailgating" class="card">
+                <h3>Office Tailgating</h3>
+                <p>Physical security matters. You're at the office door and someone you don't recognize has their hands full and asks you to swipe them in. Let's roleplay it.</p>
+                <div class="card-footer">Launch Exercise &rarr;</div>
+            </a>
+
+            <a href="simulator.html?type=pretexting" class="card">
+                <h3>Vishing (Phone Call Pretext)</h3>
+                <p>Simone will roleplay as "IT Support" calling you on the phone. Will you give up your MFA code or realize they are an imposter?</p>
+                <div class="card-footer">Launch Exercise &rarr;</div>
+            </a>
+
+            <a href="simulator.html?type=usb_drop" class="card">
+                <h3>The Lost USB Drive</h3>
+                <p>You find a USB drive labeled "Q3 Bonuses" in the company parking lot. What do you do with it? Let's step through the scenario.</p>
+                <div class="card-footer">Launch Exercise &rarr;</div>
+            </a>
+
+            <a href="simulator.html?type=social_media" class="card">
+                <h3>Social Media OSINT</h3>
+                <p>An attacker slides into your LinkedIn DMs trying to gather Open Source Intelligence (OSINT). See if you can spot their data-gathering techniques.</p>
+                <div class="card-footer">Launch Exercise &rarr;</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

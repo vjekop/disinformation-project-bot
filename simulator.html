@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator Interface | Simone Bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-panel: #111111;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --accent: #0070f3;
+            --accent-hover: #005bb5;
+            --border: #222222;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: var(--bg-dark);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-main);
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0a0a0a;
+            border-bottom: 1px solid var(--border);
+            z-index: 10;
+        }
+
+        .bot-name {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00ff00;
+        }
+
+        .exit {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.75rem;
+            padding: 8px 16px;
+            border: 1px solid #333;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .exit:hover {
+            background: var(--text-main);
+            color: var(--bg-dark);
+        }
+
+        /* Chat Container */
+        .chat-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .messages-area {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        .messages-area::-webkit-scrollbar {
+            width: 6px;
+        }
+        .messages-area::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        .messages-area::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: 8px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            animation: fadeIn 0.3s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .msg-bot {
+            align-self: flex-start;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            color: var(--text-main);
+        }
+
+        .msg-user {
+            align-self: flex-end;
+            background: #2a2a2a;
+            color: var(--text-main);
+        }
+
+        .input-area {
+            padding: 20px 30px;
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 15px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+        }
+
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background: var(--accent-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            background: var(--border);
+            color: var(--text-dim);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            padding: 10px 20px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-style: italic;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Formatting markdown-like text in bot response */
+        .msg-bot strong {
+            color: #fff;
+        }
+        .msg-bot p {
+            margin-bottom: 10px;
+        }
+        .msg-bot p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="bot-name">
+            <div class="status-dot"></div>
+            Simone // Active Simulation Mode
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <a href="index.html" class="exit">End Session</a>
+        </div>
+    </header>
+
+    <div class="chat-container">
+        <div class="messages-area" id="chatHistory">
+            <div class="message msg-bot" id="initialBotMessage">
+                <!-- Injected via JS based on Exercise Type -->
+            </div>
+            <div class="typing-indicator" id="typing">Simone is thinking...</div>
+        </div>
+        
+        <form class="input-area" id="chatForm">
+            <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off" required>
+            <button type="submit" id="sendBtn">Send</button>
+        </form>
+    </div>
+
+    <script>
+        const chatForm = document.getElementById('chatForm');
+        const userInput = document.getElementById('userInput');
+        const chatHistory = document.getElementById('chatHistory');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typing');
+
+        // Read the Exercise Type from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const exerciseType = urlParams.get('type') || 'general';
+
+        // Adjust greeting based on exercise
+        let initialGreeting = "Hello! I'm Simone. I'm here to teach you about **Social Engineering**—the art of manipulating people into giving up confidential information.\n\nInstead of hacking computers with code, attackers hack *human psychology*. They rely on core principles like **Authority** (pretending to be a boss), **Urgency** (creating a fake emergency), and **Trust** (building a fake relationship).\n\nThere are many different types of attacks, such as Phishing, Pretexting, and Baiting. What would you like to learn about first?";
+        
+        if (exerciseType === 'phishing') {
+            initialGreeting = "**Exercise: Phishing Email Analysis**\n\nI am going to send you a suspicious but realistic email. Your job is to reply and tell me the red flags you spotted.\n\nReply 'Ready' to receive the email!";
+        } else if (exerciseType === 'smishing') {
+            initialGreeting = "**Exercise: Urgent SMS (Smishing)**\n\nI am going to send you an urgent text message acting as your CEO. Let's see how you choose to respond.\n\nReply 'Ready' to receive the text!";
+        } else if (exerciseType === 'tailgating') {
+            initialGreeting = "**Exercise: Office Tailgating**\n\nYou are arriving at the secure office door. Someone walks up right behind you with a heavy box and says 'Hey, can you grab the door for me?'\n\nHow do you respond? Let's roleplay.";
+        } else if (exerciseType === 'pretexting') {
+            initialGreeting = "**Exercise: Vishing (Phone Call)**\n\nRing ring! I am calling you pretending to be 'IT Support' performing a mandatory network upgrade.\n\nReply 'Hello?' to answer the call.";
+        } else if (exerciseType === 'usb_drop') {
+            initialGreeting = "**Exercise: The Lost USB Drive**\n\nYou are walking into the office from the parking lot and you spot a shiny USB drive on the ground. On it, there's a piece of tape that says 'Q4 Exec Bonuses'.\n\nWhat is your first reaction?";
+        } else if (exerciseType === 'social_media') {
+            initialGreeting = "**Exercise: Social Media OSINT**\n\nYou receive a direct message on LinkedIn from a 'recruiter' who seems very interested in your company's internal software stack.\n\nReply 'Check Message' to read what they sent.";
+        }
+
+        // Keep track of the conversation
+        let messages = [
+            { role: 'model', content: initialGreeting }
+        ];
+
+        // Quick helper to convert simple asterisks to bold text (rudimentary markdown)
+        function formatText(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+        }
+        
+        // Inject dynamic early message
+        document.getElementById('initialBotMessage').innerHTML = formatText(initialGreeting);
+
+        function appendMessage(text, sender) {
+            const div = document.createElement('div');
+            div.classList.add('message', sender === 'user' ? 'msg-user' : 'msg-bot');
+            div.innerHTML = formatText(text);
+            
+            // Insert before typing indicator
+            chatHistory.insertBefore(div, typingIndicator);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            // Display user message
+            appendMessage(message, 'user');
+            messages.push({ role: 'user', content: message });
+            userInput.value = '';
+            
+            // UI Loading state
+            sendBtn.disabled = true;
+            typingIndicator.style.display = 'block';
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            try {
+                // Send to our local Flask backend, passing the exercise type and history
+                const apiUrl = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:' 
+                    ? 'http://127.0.0.1:5000/chat' 
+                    : '/chat';
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ history: messages, type: exerciseType })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    appendMessage("Error: " + data.error, 'model');
+                } else {
+                    appendMessage(data.reply, 'model');
+                    messages.push({ role: 'model', content: data.reply });
+                }
+            } catch (error) {
+                appendMessage("Connection error. Is the local Python server running?", 'model');
+            } finally {
+                sendBtn.disabled = false;
+                typingIndicator.style.display = 'none';
+                userInput.focus();
+            }
+        });
+    </script>
+</body>
+
+</html>
